@@ -1,5 +1,9 @@
+using ConsultaCEP.Infrastructure.Locator;
+using ConsultaCEP.Models;
+using ConsultaCEP.Repositories.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +26,19 @@ namespace ConsultaCEP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient(ViaCepOptions.Instance, options =>
+            {
+            });
+            
+            services.AddAutoMapper(typeof(Startup));
+
+            services.Configure<ViaCepOptions>(Configuration.GetSection(nameof(ViaCepOptions)));
+
+            services.ConfigureViaCepService();
+
+            services.AddDbContext<CepContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CepContext")));
+
             services.AddControllersWithViews();
         }
 
@@ -46,7 +63,7 @@ namespace ConsultaCEP
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Cep}/{action=ConsultaCep}/{id?}");
             });
         }
     }
