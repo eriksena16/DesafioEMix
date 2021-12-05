@@ -4,6 +4,7 @@ using ConsultaCEP.Repositories.Interface;
 using ConsultaCEP.Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ConsultaCEP.Services.Service
@@ -21,41 +22,47 @@ namespace ConsultaCEP.Services.Service
         public async Task<CEP> ConsultarCep(string cep)
         {
             var obj = await _cepLocationFacade.Get(cep);
-            if (!String.IsNullOrEmpty(cep))
+
+            if (!String.IsNullOrEmpty(obj.cep))
             {
-                await Adicionar(obj);
+                try
+                {
+                    await _cepRepository.AdicionarCep(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro");
+                }
             }
-            
             return obj;
-        }
-
-        public async Task<CEP> Adicionar(CEP cep)
-        {
-            while (cep.cep.Length != 9)
-            {
-                throw new Exception("CEP Invalido");
-            }
-
-            try
-            {
-                await _cepRepository.AdicionarCep(cep);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex + "Aconteceu um erro");
-            }
-
-            return cep;
-
-
         }
 
         public async Task<List<CEP>> Listar()
         {
-            List<CEP> ceps = await _cepRepository.ListarCeps();
+            List<CEP> ceps = await _cepRepository.ListarEderecos();
 
             return ceps;
         }
+
+        public Task<CEP> DetalhesToCep(string cep)
+        {
+            cep = cep.Insert(5, "-");
+
+            var obj = _cepRepository.ListarCep(cep);
+
+            return obj;
+        }
+
+        public async Task<List<CEP>> ListarToUF(string uf)
+        {
+            List<CEP> ceps = await Listar();
+
+            if (!string.IsNullOrEmpty(uf))
+                ceps = ceps.Where(c => c.uf.Contains(uf)).ToList();
+
+            return ceps;
+        }
+
     }
 }

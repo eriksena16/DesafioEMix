@@ -4,10 +4,11 @@ namespace ConsultaCEP.Models.ViewModels
 {
     public class CepViewModel
     {
+        [Key]
         [Display(Name ="CEP")]
         [StringLength(8, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 8)]
         public string cep { get; set; }
-        [Display(Name = "CEP")]
+        [Display(Name = "Logradouro")]
         public string logradouro { get; set; }
         [Display(Name = "Complemento")]
         public string complemento { get; set; }

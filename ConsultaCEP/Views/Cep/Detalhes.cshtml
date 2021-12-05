@@ -1,0 +1,136 @@
+﻿@model ConsultaCEP.Models.ViewModels.CepViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <hr />
+    @*<dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.cep)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.cep)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.logradouro)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.logradouro)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.complemento)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.complemento)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.bairro)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.bairro)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.localidade)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.localidade)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.uf)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.uf)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.unidade)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.unidade)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ibge)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ibge)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.gia)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.gia)
+            </dd>
+        </dl>*@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.cep)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.logradouro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.complemento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bairro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.localidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.uf)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.unidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ibge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gia)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+           
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.cep)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.logradouro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.complemento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.bairro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.localidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.uf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.unidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ibge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.gia)
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+

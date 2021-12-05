@@ -10,34 +10,48 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ConsultaCEP</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <br />
+            <br />
+            <br />
+            <div class="form-inline">
+                <div class="form-group mb-2">
+                    @using (Html.BeginForm("ConsultaCep", "Cep", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <p class="font-weight-bold">
+                            CEP: @Html.TextBox("cep", "", new { @class = "form-control", @placeholder = "Ex: 40270350" })
+                            <input type="submit" value="Consultar" class="btn btn-primary" />
+                            @Html.ValidationMessage("CepError")
+                        </p>
+                    }
+
+                </div>
+                <div class="form-group mb-2">
+                    @using (Html.BeginForm("ListarCeps", "", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <p class="font-weight-bold">
+                            &nbsp;&nbsp; UF: @Html.TextBox("uf", "", new { @class = "form-control", @placeholder = "Ex: BA" })
+                            <input type="submit" value="Filtrar" class="btn btn-primary" />
+                            @Html.ValidationMessage("UfError")
+
+                        </p>
+
+                    }
+                </div>
+
+            </div>
+
+            <span class=" text-danger"> @Html.ValidationSummary(true)</span>
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - ConsultaCEP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - ConsultaCEP - <a asp-area="" asp-controller="Cep" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

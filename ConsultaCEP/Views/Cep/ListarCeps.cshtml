@@ -4,25 +4,18 @@
     ViewData["Title"] = "ListarCeps";
 }
 
-<h1>Lista de Endereço</h1>
-<div class="row" style="margin-top: 20px">
-    <form asp-controller="Cep" asp-action="ConsultaCep" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Find by name:
-                <input type="text" name="cep" />
-                <input type="submit" value="Search" class="btn btn-primary" />
-                @*<span asp-validation-for="@Mode" class="text-danger"></span>*@
-            </p>
-        </div>
-    </form>
-</div>
 <hr />
+
+<h1>Lista de Endereços</h1>
+
 @if (Model != null)
 {
     <table class="table">
         <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.cep)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.logradouro)
                 </th>
@@ -54,6 +47,9 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cep)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.logradouro)
                     </td>

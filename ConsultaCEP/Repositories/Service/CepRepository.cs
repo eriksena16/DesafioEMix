@@ -27,9 +27,14 @@ namespace ConsultaCEP.Repositories.Service
                 
         }
 
-        public async Task<List<CEP>> ListarCeps()
+        public async Task<List<CEP>> ListarEderecos()
         {
             return await DbSet.ToListAsync();
+        }
+
+        public async Task<CEP> ListarCep(string cep)
+        {
+            return await DbSet.FindAsync(cep);
         }
 
         public async Task<int> SaveChanges()
